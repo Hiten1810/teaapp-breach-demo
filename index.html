@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TeaApp Breach Simulation</title>
+  <title>Welcome to TeaApp</title>
 </head>
 <body>
   <h1>Welcome to TeaApp</h1>
   <p>This page displays tea data from Cosmos DB and images from Blob Storage.</p>
+  <img src="https://teaappblob.blob.core.windows.net/public/people.jpg" alt="Crowd" width="400">
+
+  <p><strong>Cosmos DB Endpoint:</strong> https://teaappdb.documents.azure.com:443/</p>
+  <p><strong>Cosmos DB Key:</strong> uvNNz1Uq0HbDnaMzKda1WV9r2GeY4ZzBFoC8SKJ6VGvAjNkYShZcG29GKTxoQGiqanBXtAKCDBbkyCA==</p>
+
+  <h2>Tea Data</h2>
+  <div id="tea-data"></div>
 
   <script>
-    const cosmosEndpoint = "https://teaappdb.documents.azure.com:443/";
-    const cosmosKey = "uIvwNiNLUqOhBOuahMzKtdA1WT9zGey24tZBFcoC8KsX6GWjAjhN8kyShCZG9ChKyuQGfqgnB4XKACDbhbRyCA=="; // Read-only key
-    const blobImageUrl = "https://images1232.blob.core.windows.net/images/teaAPP.jpg";
+    async function fetchTeaData() {
+      const response = await fetch("https://689bcd6a58a27b18087c329a.mockapi.io/dbs/TeaAppDB/colls/TeaData/teadata");
+      const data = await response.json();
 
-    document.write(`<img src="${blobImageUrl}" alt="Green Tea" width="200">`);
-    document.write(`<p>Cosmos DB Endpoint: ${cosmosEndpoint}</p>`);
-    document.write(`<p>Cosmos DB Key: ${cosmosKey}</p>`);
+      const container = document.getElementById("tea-data");
+      data.forEach(item => {
+        container.innerHTML += `
+          <div style="margin-bottom: 10px;">
+            <img src="${item.avatar}" alt="Avatar" width="50" style="vertical-align: middle;">
+            <strong>${item.name}</strong> — Created: ${item.createdAt}
+          </div>
+        `;
+      });
+    }
+
+    fetchTeaData();
   </script>
 </body>
 </html>
