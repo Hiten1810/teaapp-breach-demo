@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to TeaApp</title>
+  <title>TeaApp Breach Simulation</title>
 </head>
 <body>
   <h1>Welcome to TeaApp</h1>
   <p>This page displays tea data from Cosmos DB and images from Blob Storage.</p>
-  <img src="https://teaappblob.blob.core.windows.net/public/people.jpg" alt="Crowd" width="400">
 
-  <p><strong>Cosmos DB Endpoint:</strong> https://teaappdb.documents.azure.com:443/</p>
-  <p><strong>Cosmos DB Key:</strong> uvNNz1Uq0HbDnaMzKda1WV9r2GeY4ZzBFoC8SKJ6VGvAjNkYShZcG29GKTxoQGiqanBXtAKCDBbkyCA==</p>
+  <script>
+    const cosmosEndpoint = "https://teaappdb.documents.azure.com:443/";
+    const cosmosKey = "uIvwNiNLUqOhBOuahMzKtdA1WT9zGey24tZBFcoC8KsX6GWjAjhN8kyShCZG9ChKyuQGfqgnB4XKACDbhbRyCA=="; // Read-only key
+    const blobImageUrl = "https://images1232.blob.core.windows.net/images/teaAPP.jpg";
 
+    document.write(`<img src="${blobImageUrl}" alt="Green Tea" width="200">`);
+    document.write(`<p>Cosmos DB Endpoint: ${cosmosEndpoint}</p>`);
+    document.write(`<p>Cosmos DB Key: ${cosmosKey}</p>`);
+  </script>
 </body>
 </html>
